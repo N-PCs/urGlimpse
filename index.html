@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>urGlimpse — Screen Recorder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <div class="brand">
+        <h1 class="app__title">ur<span>Glimpse</span></h1>
+      </div>
+      <p class="app__subtitle">Screen &amp; mic capture unit — export to WebM</p>
+    </header>
+
+    <section class="panel stage-panel">
+
+      <div class="stage">
+        <video id="preview" class="stage__video" autoplay muted playsinline></video>
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="stage__vignette" aria-hidden="true"></div>
+
+        <div id="placeholder" class="placeholder">
+          <div class="placeholder__icon">▦</div>
+          <p>Press <strong>START</strong> to engage screen capture.</p>
+        </div>
+
+        <div id="recIndicator" class="rec-indicator" hidden>
+          <span class="led led--rec"></span>
+          <span id="recTimer" class="rec-indicator__time">00:00</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" class="btn btn--accent" type="button">
+          <span class="btn__icon">●</span> Start
+        </button>
+        <button id="pauseBtn" class="btn" type="button" disabled>
+          <span class="btn__icon">⏸</span> Pause
+        </button>
+        <button id="resumeBtn" class="btn" type="button" disabled>
+          <span class="btn__icon">▶</span> Resume
+        </button>
+        <button id="stopBtn" class="btn btn--accent" type="button" disabled>
+          <span class="btn__icon">■</span> Stop
+        </button>
+      </div>
+    </section>
+
+    <section id="result" class="panel result" hidden>
+      <div class="panel__label">
+        <span class="panel__label-text">OUTPUT REEL</span>
+        <span class="led led--ok" title="READY"></span>
+      </div>
+      <video id="playback" class="result__video" controls playsinline></video>
+      <div class="result__actions">
+        <a id="downloadBtn" class="btn btn--accent" download="urGlimpse-recording.webm">
+          <span class="btn__icon">⤓</span> Download WebM
+        </a>
+        <button id="deleteBtn" class="btn" type="button">
+          <span class="btn__icon">🗑</span> Delete
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section">
+      <div class="section__label">
+        <span class="panel__label-text">FEATURES</span>
+      </div>
+      <div class="features">
+        <article class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="card__title">Screen Capture</h3>
+          <p class="card__text">Record a tab, window, or your whole display via the browser's native capture API.</p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          </div>
+          <h3 class="card__title">Mic Audio</h3>
+          <p class="card__text">Capture your voice through the microphone, with graceful fallback to system audio.</p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg>
+          </div>
+          <h3 class="card__title">Pause / Resume</h3>
+          <p class="card__text">Stop the action mid-take and pick it back up — the timeline stays continuous.</p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          </div>
+          <h3 class="card__title">WebM Export</h3>
+          <p class="card__text">Preview and download the footage locally as a standard .webm file. No uploads.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section class="section">
+      <div class="section__label">
+        <span class="panel__label-text">HOW IT WORKS</span>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__node">1</div>
+          <h3 class="step__title">Start</h3>
+          <p class="step__text">Hit <strong>Start</strong>, pick what to share, and grant mic access.</p>
+        </div>
+        <div class="step__pipe" aria-hidden="true"></div>
+        <div class="step">
+          <div class="step__node">2</div>
+          <h3 class="step__title">Record</h3>
+          <p class="step__text">Use <strong>Pause</strong> / <strong>Resume</strong> anytime; press <strong>Stop</strong> when done.</p>
+        </div>
+        <div class="step__pipe" aria-hidden="true"></div>
+        <div class="step">
+          <div class="step__node">3</div>
+          <h3 class="step__title">Export</h3>
+          <p class="step__text">Preview the reel, then <strong>Download</strong> or <strong>Delete</strong> the footage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DOCS ===================== -->
+    <section class="section">
+      <div class="section__label">
+        <span class="panel__label-text">DOCUMENTATION</span>
+      </div>
+      <div class="panel docs">
+        <p class="docs__text">
+          Screen capture requires a secure context, so serve the app over
+          <code>localhost</code> or <code>https</code> rather than opening the file directly.
+        </p>
+        <div class="terminal" role="img" aria-label="Terminal command to run the app">
+          <div class="terminal__bar">
+            <span class="led"></span><span class="led"></span><span class="led"></span>
+            <span class="terminal__title">urGlimpse — run</span>
+          </div>
+          <pre class="terminal__body"><code># From the project folder
+python -m http.server 8000
+# then open http://localhost:8000</code></pre>
+        </div>
+        <ul class="docs__list">
+          <li>Records use the <code>MediaRecorder</code>, <code>getDisplayMedia</code> &amp; <code>getUserMedia</code> APIs.</li>
+          <li>Footage is processed entirely in your browser — nothing is uploaded.</li>
+          <li>Works best in Chromium-based browsers (Chrome, Edge, Brave).</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__brand">ur<span>Glimpse</span></div>
+      <a class="footer__link" href="https://github.com/N-PCs/urGlimpse" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        <span>github.com/N-PCs/urGlimpse</span>
+      </a>
+      <p class="footer__meta">© 2026 urGlimpse — Built with the Web Media APIs.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
