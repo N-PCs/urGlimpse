@@ -93,21 +93,6 @@ python -m http.server 8000
 
 Click **Start**, pick what to share, grant microphone access, and use Pause / Resume / Stop as needed. When finished, preview the reel and Download or Delete it.
 
-## Deploy to Vercel
-
-This is a static site with no build step. Deploy directly:
-
-1. Push the repository to GitHub.
-2. In Vercel, import the repo (`N-PCs/urGlimpse`).
-3. Keep the default settings — `vercel.json` already pins the output directory to the project root.
-
-Or deploy from the CLI:
-
-```bash
-npm i -g vercel
-vercel
-```
-
 ## Tech stack
 
 Plain HTML, CSS, and JavaScript using the browser `MediaRecorder`, `getDisplayMedia`, and `getUserMedia` APIs. No external libraries. Fonts (Inter, JetBrains Mono) are loaded from Google Fonts.
@@ -122,4 +107,4 @@ Works best in Chromium-based browsers (Chrome, Edge, Brave). Screen capture is n
 
 ## License
 
-Released under the MIT License. See [LICENSE](./LICENSE) for details.
+Released under the MIT License.
